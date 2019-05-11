@@ -11,7 +11,7 @@ public class MissileLauncher extends MoveableObject implements ISteerable {
 	public MissileLauncher(double xLocation, double yLocation) {
 		super(xLocation, yLocation);
 		setColor(ColorUtil.rgb(255,0,0));
-		setModel(new ModelFactory().getModel("MissileLauncher", getColor()));
+		setModel(new ModelFactory().getModel("MissileLauncher", getColor(),this));
 
 	}
 

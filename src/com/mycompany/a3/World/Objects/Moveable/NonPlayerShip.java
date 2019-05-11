@@ -35,12 +35,12 @@ public class NonPlayerShip extends MoveableObject implements Collidible, Selecta
 		missilesCount = MAX_MISSILES; // ships have full magazines at spawn
 		launcher = new MissileLauncher(xLocation, yLocation);
 		selected = false;
-		setModel(new ModelFactory().getModel("NonPlayerShip", getColor()));
+		setModel(new ModelFactory().getModel("NonPlayerShip", getColor(),this));
 	}
 	
 	public void setColor(int newColor) {
 		super.setColor(newColor);
-		setModel(new ModelFactory().getModel("NonPlayerShip", getColor()));
+		setModel(new ModelFactory().getModel("NonPlayerShip", getColor(),this));
 	}
 
 	@Override

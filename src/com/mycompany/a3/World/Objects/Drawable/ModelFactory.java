@@ -1,5 +1,9 @@
 package com.mycompany.a3.World.Objects.Drawable;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Transform;
 import com.codename1.ui.geom.GeneralPath;
 
@@ -7,8 +11,18 @@ public class ModelFactory {
 
 	public ModelFactory() {
 	};
+	
+	public GameObjectModel getModel(String type, int color, Drawable target) {
+		
+		GameObjectModel product = new GameObjectModel(target);
+		product.setModel(getModel(type, color));
+		return product;
+	}
 
-	public Model getModel(String type, int color) {
+	private Model getModel(String type, int color) {
+		
+		
+		
 		if (type.equalsIgnoreCase("NonPlayerShip")) {
 			return buildNpsModel(color);
 		} else if (type.equalsIgnoreCase("PlayerShip")) {
@@ -31,25 +45,37 @@ public class ModelFactory {
 	}
 
 	private Model buildMissileModel(int color) {
-		GeneralPath newShape = new GeneralPath();
-		newShape.moveTo(0, -3.5);
-		newShape.lineTo(20, -3.5);
-		newShape.lineTo(20, 3.5);
-		newShape.lineTo(0, 3.5);
-		newShape.lineTo(0, -3.5);
-		
-		
+		GeneralPath shape1 = new GeneralPath();
+		shape1.moveTo(0, -3.5);
+		shape1.lineTo(20, -3.5);
+		shape1.lineTo(20, 3.5);
+		shape1.lineTo(0, 3.5);
+		shape1.lineTo(0, -3.5);
 		
 
-		Model newModel = new Model();
-		newModel.setShape(newShape);
-		newModel.setColor(color);
-		newModel.setFill(true);
+		LeafModel model1 = new LeafModel();
+		model1.setShape(shape1);
+		model1.setColor(color);
+		model1.setFill(true);
+		model1.setScale(Transform.makeScale(.5f, 1f));
 		
-		return newModel;
+		LeafModel model2 = new LeafModel();
+		model2.setShape(shape1);
+		model2.setColor(ColorUtil.BLACK);
+		model2.setFill(true);
+		model2.setRotation(Transform.makeRotation((float) Math.toRadians(180),0,0));
+		model2.setScale(Transform.makeScale(.5f, 1f));
+		
+		Collection<Model> models = new ArrayList<>();
+		models.add(model1);
+		models.add(model2);
+		
+		CompositeModel mod = new CompositeModel(models);
+		
+		return mod;
 	}
 
-	private Model buildMissileLauncherModel(int color) {
+	private LeafModel buildMissileLauncherModel(int color) {
 		GeneralPath newShape = new GeneralPath();
 		newShape.moveTo(0, -1);
 		newShape.lineTo(.5, -1);
@@ -57,14 +83,14 @@ public class ModelFactory {
 		newShape.lineTo(0, 1);
 		newShape.lineTo(0, -1);
 
-		Model newModel = new Model();
+		LeafModel newModel = new LeafModel();
 		newModel.setShape(newShape);
 		newModel.setColor(color);
 		newModel.setFill(true);
 		return newModel;
 	}
 
-	private Model buildAsteroidModel(int color) {
+	private LeafModel buildAsteroidModel(int color) {
 		GeneralPath newShape = new GeneralPath();
 
 		float[] point1 = { 0, 1 };
@@ -73,7 +99,7 @@ public class ModelFactory {
 			Transform rotate = Transform.makeRotation((float) Math.toRadians(60 * i), 0, 0);
 			newShape.lineTo(rotate.transformPoint(point1)[0], rotate.transformPoint(point1)[1]);
 		}
-		Model newModel = new Model();
+		LeafModel newModel = new LeafModel();
 		newModel.setShape(newShape);
 		newModel.setColor(color);
 		newModel.setFill(true);
@@ -81,7 +107,7 @@ public class ModelFactory {
 		return newModel;
 	}
 
-	private Model buildInvisibleWallModel(int color) {
+	private LeafModel buildInvisibleWallModel(int color) {
 		GeneralPath newShape = new GeneralPath();
 		newShape.moveTo(0, 0);
 		newShape.lineTo(1, 0);
@@ -89,14 +115,14 @@ public class ModelFactory {
 		newShape.lineTo(0, -1);
 		newShape.lineTo(0, 0);
 
-		Model newModel = new Model();
+		LeafModel newModel = new LeafModel();
 		newModel.setShape(newShape);
 		newModel.setFill(true);
 		newModel.setColor(color);
 		return newModel;
 	}
 
-	private Model buildNpsModel(int color) {
+	private LeafModel buildNpsModel(int color) {
 
 		GeneralPath newShape = new GeneralPath();
 		float[] point1 = { 1, 0 };
@@ -109,7 +135,7 @@ public class ModelFactory {
 			newShape.lineTo(point1[0], point1[1]);
 		}
 
-		Model newModel = new Model();
+		LeafModel newModel = new LeafModel();
 		newModel.setShape(newShape);
 		newModel.setFill(true);
 		newModel.setColor(color);
@@ -117,7 +143,7 @@ public class ModelFactory {
 
 	}
 
-	private Model buildPlayerShipModel(int color) {
+	private LeafModel buildPlayerShipModel(int color) {
 
 		GeneralPath thisShape = new GeneralPath();
 		thisShape.moveTo(0.5, 0);
@@ -126,14 +152,14 @@ public class ModelFactory {
 		thisShape.lineTo(-0.5, 0.5);
 		thisShape.lineTo(0.5, 0);
 
-		Model newModel = new Model();
+		LeafModel newModel = new LeafModel();
 		newModel.setShape(thisShape);
 		newModel.setColor(color);
 		newModel.setFill(true);
 		return newModel;
 	}
 
-	private Model buildStationModel(int color) {
+	private LeafModel buildStationModel(int color) {
 		GeneralPath newShape = new GeneralPath();
 		newShape.moveTo(-1, 1);
 		newShape.lineTo(1, 1);
@@ -148,7 +174,7 @@ public class ModelFactory {
 
 			newShape.lineTo(rotate.transformPoint(point2)[0], rotate.transformPoint(point2)[1]);
 		}
-		Model newModel = new Model();
+		LeafModel newModel = new LeafModel();
 		newModel.setShape(newShape);
 		newModel.setColor(color);
 		newModel.setFill(true);

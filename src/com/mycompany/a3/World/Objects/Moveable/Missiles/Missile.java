@@ -23,7 +23,7 @@ public abstract class Missile extends MoveableObject implements Collidible, Sele
 		fuel = MAX_FUEL;
 		selected = false;
 
-		setModel(new ModelFactory().getModel("Missile",getColor()));
+		setModel(new ModelFactory().getModel("Missile",getColor(),this));
 
 	}
 	
@@ -32,7 +32,7 @@ public abstract class Missile extends MoveableObject implements Collidible, Sele
 			return;
 		} else {
 			super.setColor(newColor);
-			setModel(new ModelFactory().getModel("Missile",getColor()));
+			setModel(new ModelFactory().getModel("Missile",getColor(),this));
 		}
 	}
 

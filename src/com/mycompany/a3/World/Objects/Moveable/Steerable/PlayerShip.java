@@ -28,7 +28,7 @@ public class PlayerShip extends MoveableObject implements ISteerable, Collidible
 		missilesCount = MAX_MISSILES;
 		launcher = new MissileLauncher(xLocation, yLocation);
 
-		setModel(new ModelFactory().getModel("PlayerShip", this.getColor()));
+		setModel(new ModelFactory().getModel("PlayerShip", this.getColor(),this));
 
 	}
 

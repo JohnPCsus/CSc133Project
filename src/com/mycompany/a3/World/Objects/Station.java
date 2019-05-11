@@ -27,7 +27,7 @@ public class Station extends GameObject implements Collidible {
 		blinkRate = 1;
 		
 		
-		setModel(new ModelFactory().getModel("Station",getColor()));
+		setModel(new ModelFactory().getModel("Station",getColor(),this));
 		
 		rotation = Transform.makeIdentity();
 		
@@ -60,7 +60,7 @@ public class Station extends GameObject implements Collidible {
 	
 	public void setColor(int newColor) {
 		super.setColor(newColor);
-		setModel(new ModelFactory().getModel("Station", newColor));
+		setModel(new ModelFactory().getModel("Station", newColor,this));
 	}
 
 	@Override

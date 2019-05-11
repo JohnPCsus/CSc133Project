@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Util {
 	public static final int tickRate = 15;
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	
 	private static Random ran = new Random();
 

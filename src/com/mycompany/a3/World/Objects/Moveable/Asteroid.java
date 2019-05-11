@@ -25,7 +25,7 @@ public class Asteroid extends MoveableObject implements Collidible, Selectable {
 		size = MIN_SIZE;
 		selected = false;
 		
-		setModel(new ModelFactory().getModel("Asteroid", getColor()));
+		setModel(new ModelFactory().getModel("Asteroid", getColor(),this));
 		
 		
 		setRotation(Transform.makeIdentity());
@@ -46,7 +46,7 @@ public class Asteroid extends MoveableObject implements Collidible, Selectable {
 	
 	public void setColor(int newColor) {
 		super.setColor(newColor);
-		setModel(new ModelFactory().getModel("Asteroid", newColor));
+		setModel(new ModelFactory().getModel("Asteroid", newColor, this));
 	}
 	
 	@Override 

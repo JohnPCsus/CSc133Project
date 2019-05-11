@@ -20,7 +20,7 @@ public class InvisibleWall extends GameObject {
 		
 		
 		setColor(ColorUtil.rgb(255, 0, 0));
-		setModel(new ModelFactory().getModel("InvisibleWall", getColor()));
+		setModel(new ModelFactory().getModel("InvisibleWall", getColor(),this));
 		
 		
 	}
