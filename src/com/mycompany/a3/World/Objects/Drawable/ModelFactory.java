@@ -7,7 +7,17 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Transform;
 import com.codename1.ui.geom.GeneralPath;
 
+/**
+ * factory object for getting models for gameobjects
+ * @author mhitv
+ *
+ */
 public class ModelFactory {
+	/**
+	 * presently this is a sort of hybrid between builder and factory pattern. 
+	 * this is done because neither process is complicated enough
+	 * to neccesitate separate classes
+	 */
 
 	public ModelFactory() {
 	};
